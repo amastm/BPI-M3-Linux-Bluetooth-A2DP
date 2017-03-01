@@ -101,7 +101,6 @@ echo -e "mp3 sound check loop, press CTRL+C to leave...\c"
 while true; do
 	sleep 1
 	echo -e "...\c"
-	#cvlc /usr/share/sounds/alsa/Front_Center.wav
-	cvlc ~/Music/115-mike_oldfield-foreign_affair-atm.mp3 || break
-	#if read -t0; then break; fi
+	#cvlc /usr/share/sounds/alsa/Front_Center.wav || break
+	cvlc yourTune.mp3 || break
 done; echo "done A2DP"
