@@ -9,7 +9,11 @@ echo "- both on might cause glitches, interrupted sound"
 echo "CREDITS: Excellent infos can also be found linked on the troubleshooting page of blueman github repo"
 echo "Credits also to this German page: https://frank-mankel.de/kategorien/bananapi-m2-ultra/225-bpi-m2-ultra-bluetooth"
 echo ""
+echo "Read the HINTS first. You may place a newer firmware here: /lib/firmware/ap6212/bcm43438a0.hcd"
+echo "press any key to start procedure"
+read -n 1 c
 if [ -z "`hciconfig -a`" ]; then
+	sudo mkdir -p /etc/firmware/ap6212
 	echo "Applying firmware patch to enable BT controller..."
 	ls -al /etc/firmware/ap6212/4343A0.hcd || sudo cp /lib/firmware/ap6212/bcm43438a0.hcd /etc/firmware/ap6212/4343A0.hcd
 	md5sum /etc/firmware/ap6212/4343A0.hcd
