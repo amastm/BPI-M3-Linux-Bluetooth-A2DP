@@ -60,6 +60,7 @@ echo "#keep the bluetoothctl window running, just in case..."
 pkill blueman #this piece of software does not work reliable in u16.04
 xterm -e "bluetoothctl -a" &
 disown
+
 sleep 10
 echo "====================================================="
 echo "continue with your connected device? Press any key..."
@@ -89,11 +90,12 @@ pacmd set-card-profile $index a2dp_sink
 sleep 1
 echo "please go to Configuration tab and make sure, device is a2dp_sink and select it for sound output in tab Output Devices"
 pavucontrol &
+disown 
 
 echo -e "wav sound check loop, press CTRL-C to leave...\c"
 while true; do   
-	sleep 1;   
-	echo -e "...\c"   
+	sleep 1 || break   
+	echo -e "...\c" || break  
 	aplay /usr/share/sounds/alsa/Front_Center.wav >/dev/null || break
 done
 
@@ -103,8 +105,8 @@ exit 0
 echo -e "mp3 sound check loop, press CTRL+C to leave...\c"
 #needs: sudo apt-get install vlc
 while true; do
-	sleep 1
-	echo -e "...\c"
+	sleep 1 || break
+	echo -e "...\c" || break
 	#cvlc /usr/share/sounds/alsa/Front_Center.wav || break
 	cvlc yourTune.mp3 || break
 done; echo "done A2DP"
