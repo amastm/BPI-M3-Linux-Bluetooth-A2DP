@@ -9,7 +9,7 @@ echo "- both on might cause glitches, interrupted sound"
 echo "CREDITS: Excellent infos can also be found linked on the troubleshooting page of blueman github repo"
 echo "Credits also to this German page: https://frank-mankel.de/kategorien/bananapi-m2-ultra/225-bpi-m2-ultra-bluetooth"
 echo ""
-echo "Read the HINTS first. You may place a newer firmware here: /lib/firmware/ap6212/bcm43438a0.hcd"
+echo "read the HINTS first. You may place a newer firmware here: /lib/firmware/ap6212/bcm43438a0.hcd"
 echo "press any key to start procedure"
 read -n 1 c
 if [ -z "`hciconfig -a`" ]; then
@@ -58,8 +58,7 @@ echo "[bluetooth/UE ROLL]# connect XX:YY:..."
 echo "#keep the bluetoothctl window running, just in case..."
 
 pkill blueman #this piece of software does not work reliable in u16.04
-xterm -e "bluetoothctl -a" &
-disown
+nohup $(xterm -T "bluetoothctl: KEEP THIS WINDOW for BT trouble shooting" -e "bluetoothctl -a") &
 
 sleep 10
 echo "====================================================="
@@ -89,24 +88,10 @@ sleep 1
 pacmd set-card-profile $index a2dp_sink
 sleep 1
 echo "please go to Configuration tab and make sure, device is a2dp_sink and select it for sound output in tab Output Devices"
-pavucontrol &
-disown 
 
-echo -e "wav sound check loop, press CTRL-C to leave...\c"
-while true; do   
-	sleep 1 || break   
-	echo -e "...\c" || break  
-	aplay /usr/share/sounds/alsa/Front_Center.wav >/dev/null || break
-done
+nohup pavucontrol &
 
-echo "done A2DP"
-exit 0
+nohup $(xterm -T soundloop1 -e bash soundloop1.sh) & #xterm -e bash soundloop2.sh
 
-echo -e "mp3 sound check loop, press CTRL+C to leave...\c"
-#needs: sudo apt-get install vlc
-while true; do
-	sleep 1 || break
-	echo -e "...\c" || break
-	#cvlc /usr/share/sounds/alsa/Front_Center.wav || break
-	cvlc yourTune.mp3 || break
-done; echo "done A2DP"
+echo "now, keep it up and running, you can now minimize the bluetoothctl windows. You can close this, the sound loop and pavucontrol windows. DO NOT USE CTRL-C !"
+sleep 1d
