@@ -93,5 +93,5 @@ nohup pavucontrol &
 
 nohup $(xterm -T soundloop1 -e bash soundloop1.sh) & #xterm -e bash soundloop2.sh
 
-echo "now, keep it up and running, you can now minimize the bluetoothctl windows. You can close this, the sound loop and pavucontrol windows. DO NOT USE CTRL-C !"
+echo "now, keep it up and running, you can now minimize the bluetoothctl window. You can close this, the sound loop and pavucontrol windows. DO NOT USE CTRL-C !"
 sleep 1d
