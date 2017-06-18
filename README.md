@@ -11,3 +11,6 @@ https://www.youtube.com/watch?v=3dRoHNTfIt8
 
 -Mobile receiver/sender AC363:
 http://www.ebay.co.uk/itm/Wireless-2-in1-Bluetooth-Stereo-Audio-Music-Transmitter-and-Receiver-3-5mm-AC363-/152105423340?hash=item236a3091ec:g:ORMAAOSwa81XSCCG
+
+
+You can use the firmware *.hcd file also in an Android 5.1.1 image, search for it in the Android file system an replace old by new.
